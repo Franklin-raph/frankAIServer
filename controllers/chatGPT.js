@@ -8,6 +8,7 @@ const openai = new OpenAIApi(configuration);
 const chatGptClone = async (req, res) =>{
     try {
         const prompt = req.body.prompt
+        console.log(prompt, process.env.OPENAI_API_KEY)
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `${prompt}`,
@@ -25,11 +26,11 @@ const chatGptClone = async (req, res) =>{
             data: data
         })
     } catch (error) {
-        res.status(200).json({
+        res.status(400).json({
             success: false,
-            error: "Oopps something went wrong"
+            error: "Oops!! something went wrong"
         })
-        console.log(error)
+        console.log(error.message)
     }
 }
 
