@@ -1,14 +1,13 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY_THREE,
 });
 const openai = new OpenAIApi(configuration);
 
 const chatGptClone = async (req, res) =>{
     try {
         const prompt = req.body.prompt
-        console.log(prompt, process.env.OPENAI_API_KEY)
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `${prompt}`,
